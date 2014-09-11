@@ -1,22 +1,22 @@
-Shopbeam Flash Multi Widget Example
+Shopbeam Flash Widget Example
 ====================
 
-Overview
+Shopbeam Overview
 -----
 
-Shopbeam provides tools for advertisers and publishers to create and serve display advertisements which when clicked or hovered over load product detail panels on-site which can be used to add items to a universal cart and purchase them without leaving the host website.
+Shopbeam provides tools for advertisers and publishers to create and serve display advertisements which load product detail windows on-site. These on-publisher site product detail modals windows can be used to add products to a universal cart and purchase them without leaving the host/publisher website.
 
-The Shopbeam 'widget' is the element that is embedded onto the hosting site's page or served over an ad network which the user can interact with to begin their on-site shopping experience. The Shopbeam widget can be either an html image made active with javascript or a flash swf.The instructions below are for creating and embedding a flash swf Shopbeam widget.
+The Shopbeam Widget
+-----
+
+The Shopbeam 'widget' is the element that is embedded onto a hosting site's page or served over an ad network which the user can interact with to begin their on-site shopping experience. The Shopbeam widget can be either an html image made active with javascript or a flash swf. The instructions below are for creating and embedding a flash swf Shopbeam widget.
 
 Usage
 -----
-
-There are two ways to make that your flash advertisements react to user click loading Shopbeam products detail panel.
-
-1) Linking MovieClips to Shopbeam products
+Linking MovieClips to Shopbeam products
 -----
 
-In "YourDocumentClass" file, instantiate the Shopbeam class with your API key.
+In "YourDocumentClass" file instantiate the Shopbeam class with your API key. Once instantiated call the onClickGoToProduct function passing the MovieClip name an product ID as arguments to wire up a movieclip to the Shopbeam product lightbox:
 
 ```as
     import com.shopbeam.*;
@@ -24,24 +24,20 @@ In "YourDocumentClass" file, instantiate the Shopbeam class with your API key.
     public class YourDocumentClass extends MovieClip {
 
         public function YourDocumentClass() { 
-          super();
-         
           var shopbeam:Shopbeam = new Shopbeam("YOUR-API-KEY", this);
-         
           shopbeam.onClickGoToProduct("movieClip1", "product1-id"); /* movieClip1 is the name of a Movie Clip in your flash AD
                                                                        and product1-id is the ID of a Shopbeam product */
-
           shopbeam.onClickGoToProduct("movieClip2", "product2-id");
 
       }
   }
 ```
 
-You can find com.shopbeam library into the examples on this repo.
+You can find the com.shopbeam Actionscript library in the example on this repo  [here](https://raw.githubusercontent.com/yaplas/yaplas.github.io/master/com/shopbeam/Shopbeam.as).
 
-As we see above, in order to link MovieClips to ShopBeam products, simply create the MovieClips in your stage using Flash, and give they instance names (for the example above: MovieClip1, MovieClip2). Then search into shopbeam.com/products, the IDs of the products you gonna advertise, and give to each "onClickGoToProduct" method the name you gave to the MovieClip, and the Product ID. And that's it!
+In order for MovieClips to link to ShopBeam products, ensure your MovieClips have instance names (for the example above: MovieClip1, MovieClip2). Once you have your MovieClip instance name you need a productId, to get that search  http://www.shopbeam.com/products for the product you'd like to link to and obtain the product ID for that product from the product detail modal on that page. Once you have both a MovieCLip instance name and a product ID you can call the Actionscript function `Shopbeam.onClickGoToProduct` passing first the MovieClip instance name and second the product ID as function argumentss. 
 
-Note: To find Shopbeam Product ID, you can open the product detail on shopbeam.com/products, click the Text Link tab, copy the code and paste into a text editor, then look for the product id: 
+Note: To find Shopbeam product ID, you can open the product detail on http://www.shopbeam.com/products, click the Text Link tab, copy the code and paste into a text editor, then look for the product id: 
 
 ```
 data-shopbeam-url="/v1/products?id=9184101 ...
@@ -61,40 +57,3 @@ On the hosting page just embed an object as following:
   </object>
 
 ```
-
-
-2) Loading products from the Embed attributes
------
-
-Put comma separated urls to our API for each product in the attr ``data-shopbeam-url` as shown below.
-
-
-```html
-    <object type="application/x-shockwave-flash" data="swfname.swf"
-      id="shopbeam-widget-swf-unbootstrapped-"
-      data-image-src="https://cloudinary-a.akamaihd.net/shopbeam/image/fetch/w_300,h_600,c_pad/https%3A%2F%2Fs3.amazonaws.com%2Fsb-photos%2F15430%2F0f450aa8-f79a-479f-aaee-cbfcb381e371-af14616ba9d74f4aa2121ee8efba0dfa.png"
-      data-shopbeam-url="/v1/products?id=9009644&image=1&apiKey=<API-KEY>,/v1/products?id=9009643&image=1&apiKey=<API-KEY>,/v1/products?id=9009639&image=1&apiKey=<API-KEY>" width="900"
-      height="600">
-      <param name="movie" value="swfname.swf"/>
-      <!--NOTE: the "value" of FlashVars MUST be urlEncoded!!!-->
-      <param name="FlashVars"
-        value="frameless=true&widgetUuid=<WidgetUUID>&imageUrl=https%3A%2F%2Fcloudinary-a.akamaihd.net%2Fshopbeam%2Fimage%2Ffetch%2Fw_300%2Ch_600%2Cc_fill%2Fhttps%253A%252F%252Fs3.amazonaws.com%252Fsb-photos%252F15430%252F0f450aa8-f79a-479f-aaee-cbfcb381e371-af14616ba9d74f4aa2121ee8efba0dfa.png"/>
-      <param name="allowscriptaccess" value="always"/>
-    </object>
-```
-
-Afterwards, in your AS code, simply do:
-
-```as
-    shopbeam.loadProductsFromWidgetEmbed();
-```
-instead of call shopbeam.onClickGoToProduct method.
-
-This will create clickable areas for each comma separated value.
-
-![Example clickable area](http://imgur.com/NxkuZxp.png "Example clickable area")
-
-Important
------
-
-Do not use both methods at the same time, as this would result in MovieClips overlapping.
