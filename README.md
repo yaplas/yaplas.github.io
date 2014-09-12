@@ -1,6 +1,3 @@
-Shopbeam Flash Widget Example
-====================
-
 Shopbeam Overview
 -----
 
