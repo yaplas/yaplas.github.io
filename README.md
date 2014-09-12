@@ -29,7 +29,7 @@ public class YourDocumentClass extends MovieClip {
 }
 ```
 
-You can find the com.shopbeam Actionscript library source file in the example on this repo  [here](https://raw.githubusercontent.com/yaplas/yaplas.github.io/master/com/shopbeam/Shopbeam.as).
+You can find the com.shopbeam Actionscript library source file in the example on this repo  here: https://raw.githubusercontent.com/yaplas/yaplas.github.io/master/com/shopbeam/Shopbeam.as.
 
 In order for MovieClips to link to ShopBeam products, ensure your MovieClips have instance names (for the example above: movieClip1 and movieClip2). Once you have your MovieClip instance name you need a product ID to pair with it. To get a product ID search http://www.shopbeam.com/products for the product you'd like to link to and obtain the product ID for that product from the product detail modal on that page on the tab titled 'Product ID'.
 
