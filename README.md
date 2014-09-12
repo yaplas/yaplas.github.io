@@ -6,8 +6,7 @@ Shopbeam Overview
 
 Shopbeam provides tools for advertisers and publishers to create and serve display advertisements which load product detail windows on-site. These on-publisher site product detail modal windows can be used to add products to a cross site shopping cart and purchase these products without clicking away from host/publisher website.
 
-The Shopbeam Widget
------
+####The Shopbeam Widget
 
 The Shopbeam 'widget' is the element that is embedded onto a hosting site's page or served over an ad network which the user can interact with to begin their on-site shopping experience. The Shopbeam widget can be either an html image made active with javascript or a flash swf. The instructions below are for creating and embedding a flash swf Shopbeam widget.
 
