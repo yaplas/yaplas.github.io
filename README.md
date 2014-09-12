@@ -23,7 +23,7 @@ import com.shopbeam.*;
 public class YourDocumentClass extends MovieClip {
   public function YourDocumentClass() { 
     var shopbeam:Shopbeam = new Shopbeam("YOUR-API-KEY", this);
-    shopbeam.onClickGoToProduct("movieClip1", "product1-id"); /* movieClip1 is the name of a MovieClip in your flash AD
+    shopbeam.onClickGoToProduct("movieClip1", "product1-id"); /* The first argument is a MovieClip name, the second is a product ID */
     shopbeam.onClickGoToProduct("movieClip2", "product2-id"); /* optional additional call to wire up another MovieClip */
   }
 }
