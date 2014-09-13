@@ -14,15 +14,23 @@ Usage
 
 In "YourDocumentClass" file instantiate the Shopbeam library with your API key. Once instantiated call the onClickGoToProduct function of your Shopbeam object passing the MovieClip name and product ID as arguments to wire up a MovieClip to the Shopbeam product lightbox like:
 
-```as
+``` as
 import com.shopbeam.*;
 
 public class YourDocumentClass extends MovieClip {
+
   public function YourDocumentClass() { 
+
     var shopbeam:Shopbeam = new Shopbeam("YOUR-API-KEY", this);
-    shopbeam.onClickGoToProduct("movieClip1", "product1-id"); /* The first argument is a MovieClip name, the second is a product ID */
-    shopbeam.onClickGoToProduct("movieClip2", "product2-id"); /* optional additional call to wire up another MovieClip */
+
+    // first argument is a MovieClip name, the second argument is a product ID
+    shopbeam.onClickGoToProduct("movieClip1", "product1-id");
+
+    // optional additional call to wire up another MovieClip
+    shopbeam.onClickGoToProduct("movieClip2", "product2-id");
+
   }
+
 }
 ```
 
