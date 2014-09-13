@@ -20,7 +20,9 @@
 		public var index:Number = 0;
 		private var widgetLoader: int = 0;
 		public var x_area:Number = 0;
-
+		
+		public var register:Array = new Array();
+		
 		public function Shopbeam(apiKey: String, mainMc: MovieClip) {
 			Security.allowDomain("*");
 			this.main = mainMc;
@@ -32,15 +34,15 @@
 			var exists: * = ExternalInterface.call('eval', 'window.Shopbeam !== undefined');
 			return exists;
 		}
-		private function registerProductInWidget(registerProductUrl:String):Object{
+		private function registerProductInWidget(registerProductUrl:String, i: Number):Object{
 			var result:Object = null;
 			result = executeJS("Shopbeam.swfWidgetRegisterProduct('" + main.stage.loaderInfo.parameters.widgetUuid + "', '" + registerProductUrl + "')");
 			if(!result){
-				var interval:uint = setTimeout(function():void{
-					registerProductInWidget(registerProductUrl)
+				setTimeout(function():void{
+					registerProductInWidget(registerProductUrl, i);
 					}, 2000);
 			} else {
-				clearInterval(interval);
+				register[i] = result.toString();
 			}
 			return result;
 		}
@@ -75,22 +77,21 @@
 			return true;
 		}
 		
-		public function loaderCompleteHandler(mc_name:String, data:Object, registerProductUrl:String, index:Number): void {
+		public function loaderCompleteHandler(mc_name:String, data:Object, registerProductUrl:String, i:Number): void {
 			var mc: MovieClip;
-			var i  = index;
 			var wl = this.widgetLoaderExists();
 			var result:Object;
 			mc = this.main.getChildByName(mc_name) as MovieClip;
 			mc.buttonMode = true;
 			mc.useHandCursor = true;
 			
-			registerProductInWidget(registerProductUrl);
+			registerProductInWidget(registerProductUrl, i);
 
 			mc.addEventListener(MouseEvent.CLICK, function (e: Event) {
 				if(!wl){
 					onClickProductArea(data[0].variants[0].sourceUrl);
 				} else {
-					onClickProductArea(i.toString());
+					onClickProductArea(register[i]);
 				}
 			}, false, 0, true);
 		}		
