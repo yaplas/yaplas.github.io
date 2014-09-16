@@ -84,9 +84,18 @@ A working example of a Shopbeam Flash Widget embed can be found here: http://yap
 #### Flite
 
 1. In your Flite dashboard add a new "HTML5 Ad" item.
-2.  Set Width and Height the same as in your flash project.
+
+  ![create new html5 ad](img/flite-create-new-html5.png)
+
+2. Set Width and Height the same as in your flash project.
+
+  ![set the size](img/flite-set-size.png)
+  
 3. Add a WebView component in the body, set the same width and height if it were necesary.
-4. Into the WebView Properties paste this code into the Javascript textarea:
+
+  ![use WebView component](img/flite-webview.png)
+
+4. Paste this code into the WebView Javascript textarea:
   
   ```js
   !function() {
@@ -118,8 +127,16 @@ A working example of a Shopbeam Flash Widget embed can be found here: http://yap
   > Characters in brackets [] require embed instance specific values, final values will have no brackets []. 
 
 5. Save and Publish
+
+  ![paste js code and save](img/flite-webview-js-save.png)
+
 6. Click on TRAFFIC on the top of the page, then click on Placements, click on Make New, and then Generate Tags.
+
+  ![placement section](img/flite-placement.png)
+
 7. Copy the tags code, and paste in the page you want to publish the AD.
+
+  ![copy the tags code](img/flite-placement-tag.png)
 
 
 #### Doubleclick 
