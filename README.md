@@ -84,56 +84,11 @@ A working example of a Shopbeam Flash Widget embed can be found here: http://yap
 #### Flite
 
 1. In your Flite dashboard add a new "HTML5 Ad" item.
-2. Set Width and Height the same as in your flash project.
+2.  Set Width and Height the same as in your flash project.
 3. Add a WebView component in the body, set the same width and height if it were necesary.
 4. Into the WebView Properties paste this code into the Javascript textarea:
-
-```js
-!function() {
-  function setParam(obj, name, value) {
-      var prm = document.createElement('param');
-      prm.setAttribute('name', name);
-      prm.setAttribute('value', value);
-      obj.appendChild(prm);
-  }
-
-  var swf = document.createElement('object');
-  swf.setAttribute('type', 'application/x-shockwave-flash');
-  swf.setAttribute('data', '[[swf-file-url.swf]]');
-  swf.setAttribute('id', 'shopbeam-widget-swf-unbootstrapped-[[UUID]]');
-  swf.setAttribute('width', '400');
-  swf.setAttribute('height', '250');
-  setParam(swf, 'movie', '[[swf-file-url.swf]]');
-  setParam(swf, 'FlashVars', 'widgetUuid=[[UUID]]');
-  setParam(swf, 'allowscriptaccess', 'always');
-  document.body.appendChild(swf);
-
-  var js = document.createElement('script');
-  js.setAttribute('type', 'text/javascript');
-  js.setAttribute('class', 'shopbeam-script');
-  js.setAttribute('src', 'https://www.shopbeam.com/js/widget.loader.js');
-  document.getElementsByTagName('head')[0].appendChild(js);
-}();
-```
-> Characters in brackets [] require embed instance specific values, final values will have no brackets []. 
-
-5. Save and Publish
-6. Click on TRAFFIC on the top of the page, then click on Placements
-7. Click on Make New, and then Generate Tags, then copy the code, and paste in the page you want to publish the AD.
-
-#### Doubleclick 
-
-Double Click for Publishers Shopbeam Custom SWF Creative Instructions
-
-1. Go to "Creatives" section
-2. Click "Add creatives"
-3. Select appropriate "Advertiser"
-4. Select "Third party" type
-5. Apply an appropriate "Name" to creative
-6. Paste the following code into "Code snippet" area:
-
-```html
-<script type="text/javascript">
+  
+  ```js
   !function() {
     function setParam(obj, name, value) {
         var prm = document.createElement('param');
@@ -159,9 +114,54 @@ Double Click for Publishers Shopbeam Custom SWF Creative Instructions
     js.setAttribute('src', 'https://www.shopbeam.com/js/widget.loader.js');
     document.getElementsByTagName('head')[0].appendChild(js);
   }();
-</script>
-```
-> Characters in brackets [] require embed instance specific values, final values will have no brackets []. 
+  ```
+  > Characters in brackets [] require embed instance specific values, final values will have no brackets []. 
+
+5. Save and Publish
+6. Click on TRAFFIC on the top of the page, then click on Placements
+7. Click on Make New, and then Generate Tags, then copy the code, and paste in the page you want to publish the AD.
+
+#### Doubleclick 
+
+Double Click for Publishers Shopbeam Custom SWF Creative Instructions
+
+1. Go to "Creatives" section
+2. Click "Add creatives"
+3. Select appropriate "Advertiser"
+4. Select "Third party" type
+5. Apply an appropriate "Name" to creative
+6. Paste the following code into "Code snippet" area:
+
+  ```html
+  <script type="text/javascript">
+    !function() {
+      function setParam(obj, name, value) {
+          var prm = document.createElement('param');
+          prm.setAttribute('name', name);
+          prm.setAttribute('value', value);
+          obj.appendChild(prm);
+      }
+    
+      var swf = document.createElement('object');
+      swf.setAttribute('type', 'application/x-shockwave-flash');
+      swf.setAttribute('data', '[[swf-file-url.swf]]');
+      swf.setAttribute('id', 'shopbeam-widget-swf-unbootstrapped-[[UUID]]');
+      swf.setAttribute('width', '400');
+      swf.setAttribute('height', '250');
+      setParam(swf, 'movie', '[[swf-file-url.swf]]');
+      setParam(swf, 'FlashVars', 'widgetUuid=[[UUID]]');
+      setParam(swf, 'allowscriptaccess', 'always');
+      document.body.appendChild(swf);
+    
+      var js = document.createElement('script');
+      js.setAttribute('type', 'text/javascript');
+      js.setAttribute('class', 'shopbeam-script');
+      js.setAttribute('src', 'https://www.shopbeam.com/js/widget.loader.js');
+      document.getElementsByTagName('head')[0].appendChild(js);
+    }();
+  </script>
+  ```
+  > Characters in brackets [] require embed instance specific values, final values will have no brackets []. 
 
 7. Select appropriate "Target ad unit size"
 8. Click "Save"
