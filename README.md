@@ -138,6 +138,7 @@ A working example of a Shopbeam Flash Widget embed can be found here: http://yap
 
   ![copy the tags code](img/flite-placement-tag.png)
 
+You can find a working example here <http://yaplas.github.io/flite-javascript-only.html>
 
 #### Doubleclick 
 
