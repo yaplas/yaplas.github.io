@@ -118,8 +118,9 @@ A working example of a Shopbeam Flash Widget embed can be found here: http://yap
   > Characters in brackets [] require embed instance specific values, final values will have no brackets []. 
 
 5. Save and Publish
-6. Click on TRAFFIC on the top of the page, then click on Placements
-7. Click on Make New, and then Generate Tags, then copy the code, and paste in the page you want to publish the AD.
+6. Click on TRAFFIC on the top of the page, then click on Placements, click on Make New, and then Generate Tags.
+7. Copy the tags code, and paste in the page you want to publish the AD.
+
 
 #### Doubleclick 
 
