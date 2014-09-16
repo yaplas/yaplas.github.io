@@ -130,7 +130,7 @@ Double Click for Publishers Shopbeam Custom SWF Creative Instructions
 3. Select appropriate "Advertiser"
 4. Select "Third party" type
 5. Apply an appropriate "Name" to creative
-5. Paste the following code into "Code snippet" area:
+6. Paste the following code into "Code snippet" area:
 
 ```html
 <script type="text/javascript">
@@ -163,7 +163,7 @@ Double Click for Publishers Shopbeam Custom SWF Creative Instructions
 ```
 > Characters in brackets [] require embed instance specific values, final values will have no brackets []. 
 
-6. Select appropriate "Target ad unit size"
-7. Click "Save"
-8. Now you can preview Shopbeam Ad by selecting "Preview: New window"
-9. Add appropriate "Line Items" to this creative to begin serving advertisement
+7. Select appropriate "Target ad unit size"
+8. Click "Save"
+9. Now you can preview Shopbeam Ad by selecting "Preview: New window"
+10. Add appropriate "Line Items" to this creative to begin serving advertisement
