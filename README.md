@@ -110,8 +110,8 @@ A working example of a Shopbeam Flash Widget embed can be found here: http://yap
     swf.setAttribute('type', 'application/x-shockwave-flash');
     swf.setAttribute('data', '[[swf-file-url.swf]]');
     swf.setAttribute('id', 'shopbeam-widget-swf-unbootstrapped-[[UUID]]');
-    swf.setAttribute('width', '400');
-    swf.setAttribute('height', '250');
+    swf.setAttribute('width', '[[400]]');
+    swf.setAttribute('height', '[[250]]');
     setParam(swf, 'movie', '[[swf-file-url.swf]]');
     setParam(swf, 'FlashVars', 'widgetUuid=[[UUID]]');
     setParam(swf, 'allowscriptaccess', 'always');
@@ -165,8 +165,8 @@ Double Click for Publishers Shopbeam Custom SWF Creative Instructions
       swf.setAttribute('type', 'application/x-shockwave-flash');
       swf.setAttribute('data', '[[swf-file-url.swf]]');
       swf.setAttribute('id', 'shopbeam-widget-swf-unbootstrapped-[[UUID]]');
-      swf.setAttribute('width', '400');
-      swf.setAttribute('height', '250');
+      swf.setAttribute('width', '[[400]]');
+      swf.setAttribute('height', '[[250]]');
       setParam(swf, 'movie', '[[swf-file-url.swf]]');
       setParam(swf, 'FlashVars', 'widgetUuid=[[UUID]]');
       setParam(swf, 'allowscriptaccess', 'always');
