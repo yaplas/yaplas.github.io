@@ -37,7 +37,7 @@
 		private function registerProductInWidget(registerProductUrl:String, i: Number):Object{
 			var result:Object = null;
 			result = executeJS("Shopbeam.swfWidgetRegisterProduct('" + main.stage.loaderInfo.parameters.widgetUuid + "', '" + registerProductUrl + "')");
-			if(!result){
+			if(result===null){
 				setTimeout(function():void{
 					registerProductInWidget(registerProductUrl, i);
 					}, 2000);
@@ -94,6 +94,13 @@
 					onClickProductArea(register[i]);
 				}
 			}, false, 0, true);
+			
+			mc.addEventListener(MouseEvent.MOUSE_OVER, function (e: Event) {
+				if(wl) {
+					onMouseOverProductArea(register[i]);
+				}
+			}, false, 0, true);
+			
 		}		
 		
 		public function loadProductsFromWidgetEmbed():void{
@@ -128,6 +135,9 @@
 				area.addEventListener(MouseEvent.CLICK, function (e:Event){
 					onClickProductArea(index.toString());
 				});
+				area.addEventListener(MouseEvent.MOUSE_OVER, function (e:Event){
+					onMouseOverProductArea(index.toString());
+				});
 				main.stage.addChild(area);
 			});
 		}
@@ -141,6 +151,15 @@
 				}
 			}
 		}
+		
+		private function onMouseOverProductArea(url:String): void {
+			if(widgetLoaderExists()){
+				if (main.stage.loaderInfo.parameters.widgetUuid && ExternalInterface.available) {
+					executeJS("Shopbeam.swfTrackMouseOver('" + main.stage.loaderInfo.parameters.widgetUuid + "', " + url + ")");
+				}
+			}
+		}
+
 		private function executeJS(js): * {
 			var wrapped = 'try {\n' + js + '\n}catch(err){ }'; // console.error(err);console.error(err.stack);
 			var result: * = null;
