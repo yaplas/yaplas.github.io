@@ -79,7 +79,6 @@
 		
 		public function loaderCompleteHandler(mc_name:String, data:Object, registerProductUrl:String, i:Number): void {
 			var mc: MovieClip;
-			var wl = this.widgetLoaderExists();
 			var result:Object;
 			mc = this.main.getChildByName(mc_name) as MovieClip;
 			mc.buttonMode = true;
@@ -88,7 +87,7 @@
 			registerProductInWidget(registerProductUrl, i);
 
 			mc.addEventListener(MouseEvent.CLICK, function (e: Event) {
-				if(!wl){
+				if(!widgetLoaderExists()){
 					onClickProductArea(data[0].variants[0].sourceUrl);
 				} else {
 					onClickProductArea(register[i]);
@@ -96,7 +95,7 @@
 			}, false, 0, true);
 			
 			mc.addEventListener(MouseEvent.MOUSE_OVER, function (e: Event) {
-				if(wl) {
+				if(widgetLoaderExists()) {
 					onMouseOverProductArea(register[i]);
 				}
 			}, false, 0, true);
