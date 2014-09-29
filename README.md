@@ -1,7 +1,7 @@
 Shopbeam Overview
 -----
 
-Shopbeam provides tools for advertisers and publishers to create and serve display advertisements which load product detail windows on-site. These on-publisher site product detail modal windows can be used to add products to a cross site shopping cart and purchase these products without clicking away from host/publisher website.
+Shopbeam adds eCommerce capabilities to any website. A page element such as an image or flash movie, once Shopbeam enabled, becomes the entry point to an on-site shopping experience with product detail views, a cart, and a checkout all accessible without leaving the page.
 
 ####The Shopbeam Widget
 
