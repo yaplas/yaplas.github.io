@@ -7,61 +7,51 @@
 	import flash.media.*;
 	import flash.external.*;
 	import flash.system.Security;
-	import flash.geom.ColorTransform;
 
 	public class Shopbeam {
-		private var API_KEY: String;
-		private var API_VERSION: * = "1";
-		private var API_SCHEME: String = "https";
-		private var API_DOMAIN: String = "www.shopbeam.com";
-		private var API_PORT: * = "443";
-		private var API_URL: String = API_SCHEME + "://" +API_DOMAIN + ":" + API_PORT + "/v" + API_VERSION + "/products";
-		private var main: MovieClip;
-		private var index:Number = 0;
-		private var x_area:Number = 0;
+		public var API_KEY: String;
+		public var API_VERSION: * = "1";
+		public var API_SCHEME: String = "https";
+		public var API_DOMAIN: String = "www.shopbeam.com";
+		public var API_PORT: * = "443";
+		public var API_URL: String = API_SCHEME + "://" +API_DOMAIN + ":" + API_PORT + "/v" + API_VERSION + "/products";
+		public var main: MovieClip;
+		public var stageRef: Stage;
+		public var index:Number = 0;
+		private var widgetLoader: int = 0;
+		public var x_area:Number = 0;
 		
-		private var register:Array = new Array();
+		public var register:Array = new Array();
 		
 		public function Shopbeam(apiKey: String, mainMc: MovieClip) {
 			Security.allowDomain("*");
 			this.main = mainMc;
 			this.API_KEY = apiKey;
 			this.x_area = 0;
+			widgetLoaderExists();
 		}
-		
 		private function widgetLoaderExists(): int {
 			var exists: * = ExternalInterface.call('eval', 'window.Shopbeam !== undefined');
 			return exists;
 		}
-		
 		private function registerProductInWidget(registerProductUrl:String, i: Number):Object{
-			
 			var result:Object = null;
-			
-			result = executeJS("Shopbeam.swfWidgetRegisterProduct('" + 
-									main.stage.loaderInfo.parameters.widgetUuid + "', '" + 
-									registerProductUrl + "')");
-			
+			result = executeJS("Shopbeam.swfWidgetRegisterProduct('" + main.stage.loaderInfo.parameters.widgetUuid + "', '" + registerProductUrl + "')");
 			if(result===null){
-				
-				setTimeout(function():void{ registerProductInWidget(registerProductUrl, i); }, 1000);
-					
+				setTimeout(function():void{
+					registerProductInWidget(registerProductUrl, i);
+					}, 2000);
 			} else {
-				
 				register[i] = result.toString();
 			}
-			
 			return result;
 		}
-		
 		private function log(args: * ): void {
 			if (ExternalInterface.available) {
 				ExternalInterface.call('console.log', arguments.join(' '));
 			}
 		}
-		
 		public function onClickGoToProduct(mc_name: String, productId: String): Boolean {
-			
 			var requestVars: URLVariables = new URLVariables();
 			var request: URLRequest = new URLRequest();
 			var loader: URLLoader;
@@ -93,11 +83,6 @@
 			mc = this.main.getChildByName(mc_name) as MovieClip;
 			mc.buttonMode = true;
 			mc.useHandCursor = true;
-
-			var myColorTransform = new ColorTransform();
-			myColorTransform.color = 0x000000;
-			mc.transform.colorTransform = myColorTransform;
-			mc.alpha = 0;
 			
 			registerProductInWidget(registerProductUrl, i);
 
@@ -107,22 +92,14 @@
 				} else {
 					onClickProductArea(register[i]);
 				}
-			}, false, 0, true);
+			});
 			
 			mc.addEventListener(MouseEvent.MOUSE_OVER, function (e: Event) {
 				if(widgetLoaderExists()) {
 					onMouseOverProductArea(register[i]);
 				}
-				mc.alpha = 0.5;
-				
-			}, false, 0, true);
-
-			mc.addEventListener(MouseEvent.MOUSE_OUT, function (e: Event) {
-
-				mc.alpha = 0;
-				
-			}, false, 0, true);
-
+			});
+			
 		}		
 		
 		public function loadProductsFromWidgetEmbed():void{
