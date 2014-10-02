@@ -10,7 +10,7 @@
 
 	
 	public class chopard extends MovieClip {
-		var forward : Boolean = true;
+		public var playDirection: Number = -1;
 		
 		public function chopard() {
 
@@ -18,49 +18,36 @@
 			shopbeam.onClickGoToProduct("mcStainless", "9184115"); 
 			shopbeam.onClickGoToProduct("mcGold", "9184116");
 			
-			//var square: MovieClip = this.getChildByName("mcSquare") as MovieClip;
-			//var logo: MovieClip = this.getChildByName("logo") as MovieClip;
-			//var gbag: MovieClip = this.getChildByName("gbag") as MovieClip;
-			//var sbag: MovieClip = this.getChildByName("sbag") as MovieClip;
 			var self = this;
-			this.logo.gotoAndStop(1);
-			this.sbag.gotoAndStop(1);
-			this.gbag.gotoAndStop(1);
-			
-			stopOnEnd(this.logo);
-			stopOnEnd(this.sbag);
-			stopOnEnd(this.gbag);			
+
+			prepareAnimation(this.logo);
+			prepareAnimation(this.sbag);
+			prepareAnimation(this.gbag);			
 			
 			this.addEventListener(MouseEvent.MOUSE_OVER, function (e: Event) {
-
-				e.preventDefault();
-				
-				self.logo.gotoAndPlay(1);
-				self.sbag.gotoAndPlay(1);
-				self.gbag.gotoAndPlay(1);
-
+				self.playDirection = 1;
 			});
 
 			this.addEventListener(MouseEvent.MOUSE_OUT, function (e: Event) {
-				
-				e.preventDefault();
-
-				self.logo.gotoAndStop(1);
-				self.sbag.gotoAndStop(1);
-				self.gbag.gotoAndStop(1);
-			
+				self.playDirection = -1;
 			});
 	
 			
 		}
 		
-		
-		private function stopOnEnd(mc:MovieClip) {
+		private function prepareAnimation(mc:MovieClip) {
+			var self = this;
 			
-
-			mc.addFrameScript(mc.totalFrames - 1, function():void 
-			{
-				mc.stop();
+			mc.addEventListener(Event.ENTER_FRAME, function():void {
+				if (self.playDirection > 0) {
+					if (mc.totalFrames > mc.currentFrame) {
+						mc.nextFrame();
+					}
+				} else if (self.playDirection < 0) {
+					if (mc.currentFrame > 1) {
+						mc.prevFrame();
+					}
+				}
 			});
 		}
 
