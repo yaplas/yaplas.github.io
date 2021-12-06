@@ -8,4 +8,8 @@ Agustin Lascialandare
 3. Ramda/RxJS
 4. Postgres
 5. Mongo
+6. Snowflake
+7. SQS
+8. S3
+
 
