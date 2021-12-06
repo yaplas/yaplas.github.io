@@ -3,18 +3,10 @@ Agustin Lascialandare
 
 #### Software Engineer
 
-* JS
-* TypeScript
-* React
-* Redux
-* RTK
-* Material-UI
-* Ramda
-* RxJS
-* Fastify
-* Express
-* Postgres
-* Mongo
-* Snowflake
-* SQS
-* S3
+<ul>
+{% for skill in site.data.skills %}
+  <li>
+    {{ skill }}
+  </li>
+{% endfor %}
+</ul>
